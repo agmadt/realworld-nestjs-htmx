@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Conduit{{#if pageTitle}} - {{pageTitle}}{{/if}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/tagify.css">
+  <script src="/js/htmx.js"></script>
+  <script src="/js/htmx-head-support.js"></script>
+  <script src="/js/tagify.js"></script>
+</head>
+<body hx-ext="head-support">
+  <nav class="navbar navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="/" hx-get="/htmx/home" hx-target="#app-body" hx-push-url="/">conduit</a>
+      {{> navbar}}
+    </div>
+  </nav>
+
+  <div id="app-body">
+    {{{body}}}
+  </div>
+
+  <footer>
+    <div class="container">
+      <a href="/" class="logo-font" hx-get="/htmx/home" hx-target="#app-body" hx-push-url="/">conduit</a>
+      <span class="attribution">
+        An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design licensed under MIT.
+      </span>
+    </div>
+  </footer>
+
+  <div id="htmx-redirect"></div>
+
+  <script>
+    document.body.addEventListener('htmx:configRequest', function(evt) {
+      evt.detail.headers['X-Requested-With'] = 'XMLHttpRequest';
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      var inputs = document.querySelectorAll('input[name="tagList"]');
+      inputs.forEach(function(input) {
+        if (typeof Tagify !== 'undefined' && !input._tagify) {
+          new Tagify(input, {
+            whitelist: [],
+            maxTags: 10,
+            dropdown: { maxItems: 20, classname: "tags-look", enabled: 0, closeOnSelect: false }
+          });
+          input._tagify = true;
+        }
+      });
+    });
+    document.body.addEventListener('htmx:afterSwap', function(evt) {
+      var inputs = evt.target.querySelectorAll('input[name="tagList"]');
+      inputs.forEach(function(input) {
+        if (typeof Tagify !== 'undefined' && !input._tagify) {
+          new Tagify(input, {
+            whitelist: [],
+            maxTags: 10,
+            dropdown: { maxItems: 20, classname: "tags-look", enabled: 0, closeOnSelect: false }
+          });
+          input._tagify = true;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

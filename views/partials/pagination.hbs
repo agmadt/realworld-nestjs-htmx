@@ -1,0 +1,16 @@
+{{#if totalPagination}}
+<nav hx-swap-oob="true" id="feed-pagination">
+  <ul class="pagination">
+    {{#paginationIterate totalPagination}}
+    <li class="page-item {{#if (eq this ../currentPage)}}active{{/if}}">
+      <a class="page-link"
+         hx-get="{{../hxGet}}?page={{this}}"
+         hx-target="#feed-post-preview"
+         hx-swap="innerHTML">
+        {{this}}
+      </a>
+    </li>
+    {{/paginationIterate}}
+  </ul>
+</nav>
+{{/if}}

@@ -1,0 +1,24 @@
+{{#each articles}}
+<div class="article-preview">
+  <div class="article-meta">
+    <a href="/users/{{this.user.username}}" hx-get="/htmx/users/{{this.user.username}}" hx-target="#app-body" hx-push-url="/users/{{this.user.username}}">
+      <img src="{{#if this.user.image}}{{this.user.image}}{{else}}https://api.realworld.io/images/smiley-cyrus.jpeg{{/if}}" />
+    </a>
+    <div class="info">
+      <a href="/users/{{this.user.username}}" class="author" hx-get="/htmx/users/{{this.user.username}}" hx-target="#app-body" hx-push-url="/users/{{this.user.username}}">{{this.user.username}}</a>
+      <span class="date">{{formatDate this.created_at}}</span>
+    </div>
+    {{> article-favorite-button article=this oobSwap=false}}
+  </div>
+  <a href="/articles/{{this.slug}}" class="preview-link" hx-get="/htmx/articles/{{this.slug}}" hx-target="#app-body" hx-push-url="/articles/{{this.slug}}">
+    <h1>{{this.title}}</h1>
+    <p>{{this.description}}</p>
+    <span>Read more...</span>
+    {{#if this.tags}}
+    <ul class="tag-list">
+      {{#each this.tags}}<li class="tag-default tag-pill tag-outline">{{this.name}}</li>{{/each}}
+    </ul>
+    {{/if}}
+  </a>
+</div>
+{{/each}}

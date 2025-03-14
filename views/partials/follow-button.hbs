@@ -1,0 +1,12 @@
+<button class="btn btn-sm pull-xs-right action-btn {{#if isFollowing}}btn-secondary{{else}}btn-outline-secondary{{/if}} follow-button"
+   {{#if oobSwap}}hx-swap-oob="outerHTML:.follow-button"{{/if}}
+   {{#if (eq context 'article')}}
+   hx-post="/htmx/articles/follow-user/{{articleSlug}}"
+   {{else}}
+   hx-post="/htmx/users/{{profile.username}}/follow"
+   {{/if}}
+   hx-target="this"
+   hx-swap="outerHTML">
+  <i class="ion-plus-round"></i>
+  {{#if isFollowing}}Unfollow{{else}}Follow{{/if}} {{profile.username}}
+</button>

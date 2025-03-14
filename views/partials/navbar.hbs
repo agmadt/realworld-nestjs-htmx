@@ -1,0 +1,29 @@
+<ul class="nav navbar-nav pull-xs-right" id="navbar" hx-swap-oob="true">
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq navbarActive 'home')}}active{{/if}}" href="/" hx-get="/htmx/home" hx-target="#app-body" hx-push-url="/">Home</a>
+  </li>
+  {{#if user}}
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq navbarActive 'editor')}}active{{/if}}" href="/editor" hx-get="/htmx/editor" hx-target="#app-body" hx-push-url="/editor">
+      <i class="ion-compose"></i>&nbsp;New Article
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq navbarActive 'settings')}}active{{/if}}" href="/settings" hx-get="/htmx/settings" hx-target="#app-body" hx-push-url="/settings">
+      <i class="ion-gear-a"></i>&nbsp;Settings
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq navbarActive 'profile')}}active{{/if}}" href="/users/{{user.username}}" hx-get="/htmx/users/{{user.username}}" hx-target="#app-body" hx-push-url="/users/{{user.username}}">
+      {{user.username}}
+    </a>
+  </li>
+  {{else}}
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq navbarActive 'sign-in')}}active{{/if}}" href="/sign-in" hx-get="/htmx/sign-in" hx-target="#app-body" hx-push-url="/sign-in">Sign in</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq navbarActive 'sign-up')}}active{{/if}}" href="/sign-up" hx-get="/htmx/sign-up" hx-target="#app-body" hx-push-url="/sign-up">Sign up</a>
+  </li>
+  {{/if}}
+</ul>

@@ -1,0 +1,46 @@
+
+<div class="home-page">
+  <div class="banner">
+    <div class="container">
+      <h1 class="logo-font">conduit</h1>
+      <p>A place to share your knowledge.</p>
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="feed-toggle" id="feed-navigation"
+             hx-trigger="load"
+             hx-get="/htmx/home/global-feed?page=1"
+             hx-swap="none">
+          {{> feed-navigation}}
+        </div>
+
+        <div id="feed-post-preview"
+             hx-get="/htmx/home/global-feed?page=1"
+             hx-trigger="load">
+          {{> post-preview articles=articles}}
+        </div>
+
+        <div id="feed-pagination"
+             hx-get="/htmx/home/global-feed?page=1"
+             hx-trigger="load"
+             hx-swap="none">
+          {{> pagination}}
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="sidebar" id="tag-list"
+             hx-get="/htmx/home/tag-list"
+             hx-trigger="load">
+          <p>Popular Tags</p>
+          <div class="tag-list">
+            <p>Loading tags...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

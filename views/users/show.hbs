@@ -1,0 +1,66 @@
+
+<div class="profile-page">
+  <div class="user-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <img src="{{#if profile.image}}{{profile.image}}{{else}}https://api.realworld.io/images/smiley-cyrus.jpeg{{/if}}" class="user-img" />
+          <h4>{{profile.username}}</h4>
+          <p>{{#if profile.bio}}{{profile.bio}}{{else}}No bio.{{/if}}</p>
+          {{#if isSelf}}
+          <a href="/settings" class="btn btn-sm btn-outline-secondary action-btn"
+             hx-get="/htmx/settings"
+             hx-target="#app-body"
+             hx-push-url="/settings">
+            <i class="ion-gear-a"></i> Edit Profile Settings
+          </a>
+          {{else if user}}
+          <div style="display: inline-block;">
+            {{> follow-button profile=profile isFollowing=isFollowing oobSwap=false}}
+          </div>
+          {{else}}
+          <a href="/sign-in" class="btn btn-sm btn-outline-secondary action-btn"
+             hx-get="/htmx/sign-in"
+             hx-target="#app-body"
+             hx-push-url="/sign-in">
+            <i class="ion-plus-round"></i> Follow {{profile.username}}
+          </a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-10 offset-md-1">
+        <div class="articles-toggle" id="user-feed-navigation">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a class="nav-link {{#if (eq activeTab 'articles')}}active{{/if}}"
+                 hx-get="/htmx/users/{{profile.username}}/articles"
+                 hx-target="#user-feed-post-preview"
+                 hx-swap="innerHTML">
+                My Articles
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if (eq activeTab 'favorites')}}active{{/if}}"
+                 hx-get="/htmx/users/{{profile.username}}/favorites"
+                 hx-target="#user-feed-post-preview"
+                 hx-swap="innerHTML">
+                Favorited Articles
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="user-feed-post-preview"
+             hx-get="/htmx/users/{{profile.username}}/articles"
+             hx-trigger="load">
+          {{> post-preview articles=articles}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

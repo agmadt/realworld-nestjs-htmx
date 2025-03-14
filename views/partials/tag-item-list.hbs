@@ -1,0 +1,15 @@
+<div class="sidebar" hx-swap-oob="true" id="tag-list">
+  <p>Popular Tags</p>
+  <div class="tag-list">
+    {{#each tags}}
+    <a href="/tag-feed/{{this.name}}" class="tag-pill tag-default"
+       hx-get="/htmx/home/tag-feed/{{this.name}}"
+       hx-target="#feed-post-preview"
+       hx-swap="innerHTML"
+       hx-push-url="/tag-feed/{{this.name}}">{{this.name}}</a>
+    {{/each}}
+    {{#unless tags}}
+    <p>No tags yet.</p>
+    {{/unless}}
+  </div>
+</div>

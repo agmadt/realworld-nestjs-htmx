@@ -1,0 +1,7 @@
+<button class="btn btn-sm pull-xs-right {{#if article.isFavorited}}btn-primary{{else}}btn-outline-primary{{/if}} favorite-button"
+   {{#if oobSwap}}hx-swap-oob="outerHTML:.favorite-button"{{/if}}
+   hx-post="/htmx/home/articles/{{article.slug}}/favorite"
+   hx-target="this"
+   hx-swap="outerHTML">
+  <i class="ion-heart"></i> {{article.favoriteCount}}
+</button>

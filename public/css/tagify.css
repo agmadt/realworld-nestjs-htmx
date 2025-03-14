@@ -1,0 +1,115 @@
+.tags-look .tagify__dropdown__item {
+  display: inline-block;
+  border-radius: 3px;
+  padding: .3em .5em;
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+  margin: .2em;
+  font-size: .85em;
+  color: #333;
+  transition: 0s;
+}
+
+.tags-look .tagify__dropdown__item--active {
+  color: #333;
+  border-color: #5cb85c;
+  background: #e8f5e9;
+}
+
+.tagify {
+  --tags-disabled-bg: #f1f1f1;
+  --tags-border-color: rgba(0,0,0,.15);
+  --tags-hover-border-color: #ccc;
+  --tags-focus-border-color: #5cb85c;
+  --tag-bg: #e5e5e5;
+  --tag-hover: #d3e2e2;
+  --tag-text-color: #333;
+  --tag-text-color--edit: #333;
+  --tag-pad: 0.3em 0.5em;
+  --tag-inset-shadow-size: 1.1em;
+  --tag-invalid-color: #d39494;
+  --tag-invalid-bg: rgba(211, 148, 148, 0.5);
+  --tag-remove-bg: rgba(211, 148, 148, 0.3);
+  --tag-remove-btn-color: #333;
+  --tag-remove-btn-bg: none;
+  --tag-remove-btn-bg--hover: #c77777;
+  --input-color: inherit;
+  --tag-min-width: 0;
+  --tag-max-width: auto;
+  --tag-hide-transition: .3s;
+  display: inline-flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border: 1px solid var(--tags-border-color);
+  padding: 0;
+  line-height: 1.5;
+  cursor: text;
+  position: relative;
+  transition: border-color .2s;
+  border-radius: 0.25rem;
+  width: 100%;
+  min-height: calc(1.5em + 0.75rem + 2px);
+  box-sizing: border-box;
+}
+
+.tagify:hover {
+  border-color: var(--tags-hover-border-color);
+}
+
+.tagify.tagify--focus {
+  border-color: var(--tags-focus-border-color);
+}
+
+.tagify__input {
+  min-width: 110px;
+  padding: 0.75rem 0.5rem;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.tagify__tag {
+  display: inline-flex;
+  align-items: center;
+  margin: 3px;
+  position: relative;
+  z-index: 1;
+  transition: .13s ease-out;
+  border-radius: 3px;
+}
+
+.tagify__tag > div {
+  padding: var(--tag-pad);
+  background: var(--tag-bg);
+  color: var(--tag-text-color);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.tagify__tag__removeBtn {
+  order: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  margin-left: 4.66667px;
+  background: var(--tag-remove-btn-bg);
+  color: var(--tag-remove-btn-color);
+  border: none;
+}
+
+.tagify__tag__removeBtn:hover {
+  background: var(--tag-remove-btn-bg--hover);
+}
+
+.tagify__tag__removeBtn:hover + div {
+  background: var(--tag-hover);
+}

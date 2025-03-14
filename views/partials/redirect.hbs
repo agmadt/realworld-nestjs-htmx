@@ -1,0 +1,3 @@
+<div id="htmx-redirect" hx-swap-oob="true">
+  <div hx-get="{{url}}" hx-target="#app-body" hx-trigger="load" {{#if pushUrl}}hx-push-url="{{pushUrl}}"{{/if}}></div>
+</div>

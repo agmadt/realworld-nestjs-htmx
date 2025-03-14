@@ -1,0 +1,16 @@
+<div class="card comment-form" id="comment-form-wrapper">
+  <form id="comment-form"
+        hx-post="/htmx/articles/{{article.slug}}/comments"
+        hx-target="#comments-wrapper"
+        hx-swap="afterbegin"
+        hx-indicator="#comment-form-indicator">
+    <div id="comment-form-errors"></div>
+    <div class="card-block">
+      <textarea class="form-control" name="body" placeholder="Write a comment..." rows="3"></textarea>
+    </div>
+    <div class="card-footer">
+      <img src="{{#if user.image}}{{user.image}}{{else}}https://api.realworld.io/images/smiley-cyrus.jpeg{{/if}}" class="comment-author-img" />
+      <button class="btn btn-sm btn-primary" type="submit">Post Comment</button>
+    </div>
+  </form>
+</div>

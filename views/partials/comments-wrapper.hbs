@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8 offset-md-2" id="comments-wrapper" hx-swap-oob="true">
+    {{#if user}}
+    {{> comments-form article=article user=user}}
+    {{else}}
+    <div class="col-xs-12 col-md-8 offset-md-2" style="margin-top: 1rem;">
+      <p>
+        <a href="/sign-in" hx-get="/htmx/sign-in" hx-target="#app-body" hx-push-url="/sign-in">Sign in</a>
+        or
+        <a href="/sign-up" hx-get="/htmx/sign-up" hx-target="#app-body" hx-push-url="/sign-up">sign up</a>
+        to add comments on this article.
+      </p>
+    </div>
+    {{/if}}
+
+    {{#each comments}}
+    {{> comments-card comment=this}}
+    {{else}}
+    <div class="col-xs-12 col-md-8 offset-md-2" style="margin-top: 1rem;">
+      <p>No comments yet.</p>
+    </div>
+    {{/each}}
+  </div>
+</div>

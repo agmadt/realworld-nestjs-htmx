@@ -1,0 +1,32 @@
+<div class="feed-toggle" hx-swap-oob="true" id="feed-navigation">
+  <ul class="nav nav-pills outline-active">
+    {{#if user}}
+    <li class="nav-item">
+      <a class="nav-link {{#if (eq activeTab 'your')}}active{{/if}}"
+         hx-get="/htmx/home/your-feed"
+         hx-target="#feed-post-preview"
+         hx-swap="innerHTML">
+        Your Feed
+      </a>
+    </li>
+    {{/if}}
+    <li class="nav-item">
+      <a class="nav-link {{#if (eq activeTab 'global')}}active{{/if}}"
+         hx-get="/htmx/home/global-feed"
+         hx-target="#feed-post-preview"
+         hx-swap="innerHTML">
+        Global Feed
+      </a>
+    </li>
+    {{#if tagName}}
+    <li class="nav-item">
+      <a class="nav-link {{#if (eq activeTab 'tag')}}active{{/if}}"
+         hx-get="/htmx/home/tag-feed/{{tagName}}"
+         hx-target="#feed-post-preview"
+         hx-swap="innerHTML">
+        #{{tagName}}
+      </a>
+    </li>
+    {{/if}}
+  </ul>
+</div>

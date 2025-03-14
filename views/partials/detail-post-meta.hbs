@@ -1,0 +1,48 @@
+<div class="article-meta">
+  <a href="/users/{{article.user.username}}" hx-get="/htmx/users/{{article.user.username}}" hx-target="#app-body" hx-push-url="/users/{{article.user.username}}">
+    <img src="{{#if article.user.image}}{{article.user.image}}{{else}}https://api.realworld.io/images/smiley-cyrus.jpeg{{/if}}" />
+  </a>
+  <div class="info">
+    <a href="/users/{{article.user.username}}" class="author"
+       hx-get="/htmx/users/{{article.user.username}}"
+       hx-target="#app-body"
+       hx-push-url="/users/{{article.user.username}}">{{article.user.username}}</a>
+    <span class="date">{{formatDate article.created_at}}</span>
+  </div>
+
+  {{#if user}}
+    {{#if (eq user.id article.user_id)}}
+    <a href="/editor/{{article.slug}}" class="btn btn-sm btn-outline-secondary"
+       hx-get="/htmx/editor/{{article.slug}}"
+       hx-target="#app-body"
+       hx-push-url="/editor/{{article.slug}}">
+      <i class="ion-edit"></i> Edit Article
+    </a>
+    <button class="btn btn-sm btn-outline-danger"
+            hx-delete="/htmx/articles/{{article.slug}}"
+            hx-confirm="Are you sure you want to delete this article?"
+            hx-target="#app-body"
+            hx-swap="innerHTML">
+      <i class="ion-trash-a"></i> Delete Article
+    </button>
+    {{else}}
+    {{> follow-button profile=article.user isFollowing=../isFollowing oobSwap=false context='article' articleSlug=article.slug}}
+    &nbsp;
+    {{> favorite-button article=article oobSwap=false}}
+    {{/if}}
+  {{else}}
+  <a href="/sign-in" class="btn btn-sm btn-outline-secondary"
+     hx-get="/htmx/sign-in"
+     hx-target="#app-body"
+     hx-push-url="/sign-in">
+    <i class="ion-plus-round"></i> Follow {{article.user.username}}
+  </a>
+  &nbsp;
+  <a href="/sign-in" class="btn btn-sm btn-outline-primary"
+     hx-get="/htmx/sign-in"
+     hx-target="#app-body"
+     hx-push-url="/sign-in">
+    <i class="ion-heart"></i> Favorite Article
+  </a>
+  {{/if}}
+</div>

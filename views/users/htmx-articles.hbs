@@ -1,0 +1,20 @@
+<div class="articles-toggle" id="user-feed-navigation" hx-swap-oob="true">
+  <ul class="nav nav-pills outline-active">
+    <li class="nav-item">
+      <a class="nav-link {{#if (eq activeTab 'articles')}}active{{/if}}"
+         hx-get="/htmx/users/{{profile.username}}/articles"
+         hx-target="#user-feed-post-preview"
+         hx-swap="innerHTML">
+        My Articles
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {{#if (eq activeTab 'favorites')}}active{{/if}}"
+         hx-get="/htmx/users/{{profile.username}}/favorites"
+         hx-target="#user-feed-post-preview"
+         hx-swap="innerHTML">
+        Favorited Articles
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-block">
+    <p class="card-text">{{comment.body}}</p>
+  </div>
+  <div class="card-footer">
+    <a href="/users/{{comment.user.username}}" class="comment-author">
+      <img src="{{#if comment.user.image}}{{comment.user.image}}{{else}}https://api.realworld.io/images/smiley-cyrus.jpeg{{/if}}" class="comment-author-img" />
+    </a>
+    &nbsp;
+    <a href="/users/{{comment.user.username}}" class="comment-author"
+       hx-get="/htmx/users/{{comment.user.username}}"
+       hx-target="#app-body"
+       hx-push-url="/users/{{comment.user.username}}">{{comment.user.username}}</a>
+    <span class="date-posted">{{formatDate comment.created_at}}</span>
+  </div>
+</div>

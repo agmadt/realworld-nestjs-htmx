@@ -1,0 +1,34 @@
+
+<div class="article-page">
+  <div class="banner">
+    <div class="container">
+      <h1>{{article.title}}</h1>
+      {{> detail-post-meta article=article isFollowing=isFollowing user=user}}
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row article-content">
+      <div class="col-md-12">
+        <p>{{article.body}}</p>
+        {{#if article.tags}}
+        <ul class="tag-list">
+          {{#each article.tags}}<li class="tag-default tag-pill tag-outline">{{this.name}}</li>{{/each}}
+        </ul>
+        {{/if}}
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="article-actions">
+      {{> detail-post-meta article=article isFollowing=isFollowing user=user}}
+    </div>
+
+    <div class="row" id="comments-wrapper"
+         hx-get="/htmx/articles/{{article.slug}}/comments"
+         hx-trigger="load">
+      {{> comments-wrapper comments=comments user=user article=article}}
+    </div>
+  </div>
+</div>
